@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Spatie\Permission\Traits\HasRoles;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,6 +29,12 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        if ($request->user()->hasRole('admin')) {
+            return redirect()->intended(RouteServiceProvider::ADMIN);
+        } elseif ($request->user()->hasRole('dokter')) {
+            return redirect()->intended(RouteServiceProvider::DOKTER);
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

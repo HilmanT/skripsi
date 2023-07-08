@@ -1,8 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        @if (Auth::user()->hasRole('dokter'))
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Dashboard Dokter') }}
+            </h2>
+        @elseif (Auth::user()->hasRole('admin'))
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Dashboard Admin') }}
+            </h2>
+        @else
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Dashboard Pasien') }}
+
+            </h2>
+        @endif
     </x-slot>
 
     <div class="py-12">
