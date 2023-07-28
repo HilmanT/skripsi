@@ -16,10 +16,11 @@ return new class extends Migration
             $table->foreignId('id_pendaftaran')->references('id')->on('pendaftaran_pasien');
             $table->text('gejala');
             $table->text('diagnosis');
-            $table->text('terapi');
+            $table->text('solusi');
             $table->foreignId('id_pasien')->nullable()->constrained('users');
             $table->foreignId('id_dokter')->nullable()->constrained('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

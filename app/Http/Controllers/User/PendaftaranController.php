@@ -35,4 +35,13 @@ class PendaftaranController extends Controller
 
         return redirect()->route('pendaftaran');
     }
+
+    public function destroy($id)
+    {
+        $pendaftaran = Pendaftaran::where('id', $id)->first();
+
+        $pendaftaran->delete();
+
+        return redirect()->route('pendaftaran');
+    }
 }

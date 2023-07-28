@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('pendaftaran_pasien', function (Blueprint $table) {
             $table->id();
             $table->string('no_registrasi')->unique();
+            $table->boolean('status')->default(0);
             $table->foreignId('id_pasien')->nullable()->constrained('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

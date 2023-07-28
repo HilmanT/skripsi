@@ -13,6 +13,7 @@ class Pendaftaran extends Model
 
     protected $fillable = [
         'no_registrasi',
+        'status',
         'id_pasien'
     ];
 

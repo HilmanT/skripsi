@@ -7,10 +7,9 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        Riwayat Pendaftaran
+                        Antrian Pasien
                     </div>
                     <div class="card-body">
-                        <a href="{{ route('create.pendaftaran') }}" class="btn btn-primary mb-4">Daftar</a>
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>
@@ -33,7 +32,7 @@
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach ($pendaftaran as $data)
+                                @foreach ($antrian as $data)
                                     <tr>
                                         <td>{{ date('d F Y', strtotime($data->created_at)) }}</td>
                                         <td>{{ $data->no_registrasi }}</td>
@@ -45,19 +44,17 @@
                                         @endif
                                         <td>{{ $data->user->jekel }}</td>
                                         <td>
-                                            {{-- <a href="{{ route('create.pendaftaran') }}" style="color: orange"><i class="fas fa-pencil"></i></a> --}}
-                                            @if ($data->status == true)
-                                                <a href="{{ route('invoice', ['id' => $data->id]) }}" style="color: blue"><i
-                                                        class="fas fa-edit"></i></a>
+                                            @if ($data->status == false)
+                                                <a href="{{ route('create.rekam-medis', ['reg' => $data->no_registrasi]) }}" style="color: blue"><i class="fas fa-edit"></i></a>
                                             @else
-                                                <form method="post"
-                                                    action="{{ route('delete.pendaftaran', $data->id) }}">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" style="color: red"><i
-                                                            class="fas fa-trash"></i></button>
-                                                </form>
+                                                <a href="{{ route('invoice', ['id' => $data->id]) }}" style="color: blue"><i class="fas fa-edit"></i></a>
                                             @endif
+                                            {{-- <form method="post"
+                                                action="{{ route('delete.pendaftaran', $data->id) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" style="color: red"><i class="fas fa-trash"></i></button>
+                                            </form> --}}
                                         </td>
                                     </tr>
                                 @endforeach

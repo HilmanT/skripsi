@@ -7,10 +7,10 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        Riwayat Pendaftaran
+                        Data Pendaftaran
                     </div>
                     <div class="card-body">
-                        <a href="{{ route('create.pendaftaran') }}" class="btn btn-primary mb-4">Daftar</a>
+                        {{-- <a href="{{ route('admin.create.pendaftaran') }}" class="btn btn-primary mb-4">Daftar</a> --}}
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>
@@ -51,7 +51,7 @@
                                                         class="fas fa-edit"></i></a>
                                             @else
                                                 <form method="post"
-                                                    action="{{ route('delete.pendaftaran', $data->id) }}">
+                                                    action="{{ route('admin.delete.pendaftaran', $data->id) }}">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" style="color: red"><i
