@@ -18,7 +18,7 @@ class EnsureAdminRole
     public function handle(Request $request, Closure $next): Response
     {
         if(!Auth::user()->hasRole('admin')) {
-            return redirect('/');
+            return redirect('/admin/dashboard');
         }
 
         return $next($request);

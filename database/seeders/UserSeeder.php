@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $pasienRole = Role::firstOrCreate(['name' => 'pasien']);
         $adminRole = Role::firstOrCreate(['name' => 'admin']);
         $doctorRole = Role::firstOrCreate(['name' => 'dokter']);
 
@@ -32,5 +33,12 @@ class UserSeeder extends Seeder
             'password' => Hash::make('dokter123'),
         ]);
         $user2->assignRole($doctorRole);
+
+        $user3 = User::create([
+            'name' => 'Hilman',
+            'email' => 'hilman@gmail.test',
+            'password' => Hash::make('hilman123'),
+        ]);
+        $user3->assignRole($pasienRole);
     }
 }

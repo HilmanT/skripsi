@@ -18,7 +18,7 @@ class EnsureDokterRole
     public function handle(Request $request, Closure $next): Response
     {
         if(!Auth::user()->hasRole('dokter')) {
-            return redirect('/');
+            return redirect('/dokter/dashboard');
         }
 
         return $next($request);
