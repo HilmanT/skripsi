@@ -1,9 +1,27 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4 mb-4">Profil</h1>
+
+                <div class="card mb-4 p-4">
+                    @include('profile.partials.update-profile-information-form')
+                </div>
+
+                <div class="card mb-4 p-4">
+                    @include('profile.partials.update-password-form')
+                </div>
+
+                <div class="card mb-4 p-4">
+                    @include('profile.partials.delete-user-form')
+                </div>
+            </div>
+        </main>
+    </div>
+
+    {{-- <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        {{ __('Profile') }}
+    </h2>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
@@ -25,5 +43,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </x-app-layout>
