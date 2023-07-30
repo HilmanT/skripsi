@@ -25,13 +25,20 @@ class PendaftaranController extends Controller
     public function store(Request $request) {
         $user = $request->user();
         $pendaftaran = $request->except('_token');
+        $lastPendaftaran = Pendaftaran::where('id_pasien', $user->id)->where('status', false)->first();
 
         $user->fill($pendaftaran);
         $user->save();
 
-        Pendaftaran::updateOrCreate([
-            'id_pasien' => $user->id
-        ]);
+        if (isset($lastPendaftaran)) {
+            Pendaftaran::updateOrCreate([
+                'id_pasien' => $user->id
+            ]);
+        } else {
+            Pendaftaran::create([
+                'id_pasien' => $user->id
+            ]);
+        }
 
         return redirect()->route('pendaftaran');
     }
