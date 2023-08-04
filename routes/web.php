@@ -21,9 +21,9 @@ use App\Http\Controllers\RekamMedisController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('welcome');
 
 Route::get('/invoice', function () {
     return view('invoice');
